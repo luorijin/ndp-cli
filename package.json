@@ -4,7 +4,7 @@
   "description": "排除项目中的构建依赖",
   "main": "index.js",
   "bin": {
-    "ndp": "bin/index.js"
+    "ndp": "bin/ndp.js"
   },
   "repository": {
     "type": "git",
@@ -22,16 +22,29 @@
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@vue/babel-preset-app": "^4.1.2",
+    "address": "^1.1.2",
     "babel-loader": "^8.0.6",
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.0",
+    "file-loader": "^5.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "ora": "^4.0.3",
+    "portfinder": "^1.0.25",
+    "portfinder-sync": "0.0.2",
     "style-loader": "^1.1.2",
+    "terser-webpack-plugin": "^2.3.1",
+    "url-loader": "^3.0.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
+    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.5",
     "webpack-dev-server": "^3.10.1",
