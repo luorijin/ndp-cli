@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import servletContext from './servletContext'
+import servletContext from 'servletContext'
 import './mock'
 console.log(servletContext)
 servletContext.on("main:luo",function(v){

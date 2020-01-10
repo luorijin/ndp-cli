@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import servletContext from '@/servletContext'
+import servletContext from 'servletContext'
 axios.defaults.timeout = 30000;                      //响应时间
 axios.defaults.headers['Content-Type'] = "application/json";
 
