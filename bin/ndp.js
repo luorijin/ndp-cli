@@ -11,7 +11,7 @@ try {
     program.command('build')
     .description('打包项目');
     program.command('install <templat-name> [options]')
-    .description('将本地项目安装位模板,-I:本地,-G:远程');
+    .description('将本地项目安装位模板,-I:本地,默认:远程');
     program.parse(process.argv);
     let type = program.args[0];
     let args = minimist(process.argv.slice(2))
