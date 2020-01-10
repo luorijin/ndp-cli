@@ -1,6 +1,6 @@
 {
   "name": "ndp-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "排除项目中的构建依赖",
   "main": "index.js",
   "bin": {
@@ -19,7 +19,7 @@
     "url": "https://github.com/luorijin/ndp-cli/issues"
   },
   "homepage": "https://github.com/luorijin/ndp-cli#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@vue/babel-preset-app": "^4.1.2",
