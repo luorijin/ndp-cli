@@ -3,7 +3,15 @@ const program = require("commander")
 const run = require("../lib/run")
 const minimist = require("minimist")
 try {
-    program.option('-m,--mode',"打包环境");
+    program.option('-m,--mode',"打包环境")
+    program.command('init <templat-name> <project-name>')
+    .description('创建项目');
+    program.command('dev')
+    .description('运行项目')
+    program.command('build')
+    .description('打包项目');
+    program.command('install <templat-name> [options]')
+    .description('将本地项目安装位模板,-I:本地,-G:远程');
     program.parse(process.argv);
     let type = program.args[0];
     let args = minimist(process.argv.slice(2))
