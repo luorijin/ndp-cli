@@ -74,7 +74,7 @@ module.exports.baseConfig = merge({
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src'), client],
+                include: [resolve('src'),resolve("node_modules"), client],
                 options:{
                     cwd:path.join(__dirname,'../'),
                     ...babelOptions
