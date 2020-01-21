@@ -16,7 +16,7 @@ let outputDir = resolve(ndpConfig.outputDir || 'dist');
 let assetsPath = (dir)=>{return path.posix.join(utils.getAssetPath(ndpConfig,dir))}
 module.exports.baseConfig = merge({
     context:path.join(__dirname,'../'),
-    entry:getEntryAndTemp.entry,
+    entry:getEntryAndTemp.entrys,
     output:{
         path:outputDir,
         publicPath: ndpConfig.publicPath ||'/',
@@ -46,7 +46,7 @@ module.exports.baseConfig = merge({
         }
     },
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js','.tsx','jsx','.vue'],
         alias: {
           '@': resolve("src"),
         },
@@ -72,7 +72,7 @@ module.exports.baseConfig = merge({
                 }
             },
             {
-                test: /\.js$/,
+                test: /\.(js|tsx|jsx)$/,
                 loader: 'babel-loader',
                 include: [resolve('src'),resolve("node_modules"), client],
                 options:{
@@ -110,10 +110,12 @@ module.exports.baseConfig = merge({
         ]
       },
     plugins:[
-        new VueLoaderPlugin(),
-        new HtmlWebpackPlugin({
-            ...getEntryAndTemp.htmlWebpack
-          }),
+        new VueLoaderPlugin(),//复制已有的Loader到 `.vue` 文件中的 `<script><style>` 块
+        ...getEntryAndTemp.htmlWebpack.map((config)=>{
+            return  new HtmlWebpackPlugin({
+                ...config
+            })
+        }),
         new CopyWebpackPlugin([
             {
               from: resolve("public"),
