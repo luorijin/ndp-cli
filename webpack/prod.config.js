@@ -1,7 +1,7 @@
-const webpack = require("webpack")
 const path = require("path")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//css压缩
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');//js压缩
 const merge = require("webpack-merge")
 const base = require("./base.config");
@@ -52,9 +52,7 @@ module.exports =merge(base.baseConfig,{
         ]
     },
     plugins:[
-        new webpack.DefinePlugin({
-            BASE_URL:JSON.stringify('./')
-        }),
+        // new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
             filename: devMode ? assetsPath('css/[name].css') : assetsPath('css/[name].[contenthash].css'),
         })
