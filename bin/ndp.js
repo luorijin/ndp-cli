@@ -13,7 +13,9 @@ try {
     program.command('install <templat-name>')
     .description('安装本地模板');
     program.command('update <templat-name> [options]')
-    .description('更新模板，直接覆盖,-I:本地,默认:远程');
+    .description('更新模板，直接覆盖,-I:本地,默认:远程')
+    program.command('add <package> [options]')
+    .description('安装构建依赖包,例如ndp add axios --save')
     program.parse(process.argv);
     let type = program.args[0];
     let args = minimist(process.argv.slice(2))

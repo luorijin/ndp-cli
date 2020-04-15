@@ -2,8 +2,10 @@ const merge = require("webpack-merge")
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
 const chalk = require("chalk")
 const webpack = require("webpack")
+const utils = require("../lib/utils")
 const base = require("./base.config")
-const devServer = base.devServer;
+const devServer = base.devServer
+let baseUrl =`http://${devServer.host}:${devServer.port}`
 module.exports = merge(base.baseConfig,{
     mode:"development",
     devtool: 'cheap-module-eval-source-map',
@@ -32,6 +34,10 @@ module.exports = merge(base.baseConfig,{
         ]
     },
     plugins:[
+        new webpack.DefinePlugin({
+            BASE_URL:JSON.stringify(baseUrl+'/'),
+            ENV:JSON.stringify(utils.getEnv(process.env.mode))
+        }),
         new webpack.HotModuleReplacementPlugin(),//热加载插件
         new webpack.NamedModulesPlugin(), // 作用是在热加载时直接返回更新文件名，而不是文件的id
         new webpack.NoEmitOnErrorsPlugin(),//跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误

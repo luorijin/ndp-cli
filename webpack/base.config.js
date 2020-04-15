@@ -12,7 +12,6 @@ let getEntryAndTemp = utils.getEntryAndTemp()
 let resolve = (dir)=>{return path.join(process.cwd(),dir)};
 let client = path.join(__dirname,"..","node_modules/webpack-dev-server/client");
 const devMode = process.env.NODE_ENV !== 'production'
-let baseUrl = devMode?`http://${devServer.host}:${devServer.port}`:'./';
 let ndpConfig = utils.getNdpConfig();
 let outputDir = resolve(ndpConfig.outputDir || 'dist');
 let assetsPath = (dir)=>{return path.posix.join(utils.getAssetPath(ndpConfig,dir))}
@@ -112,10 +111,6 @@ module.exports.baseConfig = merge({
         ]
       },
     plugins:[
-        new webpack.DefinePlugin({
-            BASE_URL:JSON.stringify(baseUrl+'/'),
-            ENV:JSON.stringify(utils.getEnv(process.env.mode))
-        }),
         new VueLoaderPlugin(),//复制已有的Loader到 `.vue` 文件中的 `<script><style>` 块
         ...getEntryAndTemp.htmlWebpack.map((config)=>{
             return  new HtmlWebpackPlugin({

@@ -1,4 +1,5 @@
 const path = require("path")
+const webpack = require("webpack")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//css压缩
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -7,7 +8,6 @@ const merge = require("webpack-merge")
 const base = require("./base.config");
 const utils = require("../lib/utils")
 const ndpConfig = base.ndpConfig;
-const devMode = process.env.NODE_ENV !== 'production'
 let assetsPath = (dir)=>{return path.posix.join(utils.getAssetPath(ndpConfig,dir))}
 let isAbsolute = path.isAbsolute(base.baseConfig.output.publicPath);
 let cssPublicPath = '../'.repeat(ndpConfig.assetsDir?ndpConfig.assetsDir.split('/').length+1:1);
@@ -52,9 +52,13 @@ module.exports =merge(base.baseConfig,{
         ]
     },
     plugins:[
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
+        new webpack.DefinePlugin({
+            BASE_URL:JSON.stringify('./'),
+            ENV:JSON.stringify(utils.getEnv(process.env.mode))
+        }),
         new MiniCssExtractPlugin({
-            filename: devMode ? assetsPath('css/[name].css') : assetsPath('css/[name].[contenthash].css'),
+            filename: assetsPath('css/[name].[contenthash].css')
         })
     ]
 })
